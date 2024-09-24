@@ -53,6 +53,10 @@ class CalculatorViewModel: ObservableObject {
         model.calculateTotal()
     }
     
+    func root(view: Int) ->Void {
+        model.root(view: view)
+    }
+    
 }
 
 struct LabelButton: View {
@@ -75,7 +79,7 @@ struct rowOfValues: View {
     let values: [String]
     let colors: [Color]
     let viewModel: CalculatorViewModel
-    let operations: [String] = ["+", "-", "X", "➗", "√"]
+    let operations: [String] = ["+", "-", "X", "➗"]
     
     var body: some View {
         HStack {
@@ -93,6 +97,8 @@ struct rowOfValues: View {
                         } else if values[Index] == "=" {
                             viewModel.calculateTotal()
                             viewModel.switchUserInput()
+                        } else if values[Index] == "√" {
+                            viewModel.root(view: viewModel.userView)
                         } else {
                             return
                         }
@@ -122,8 +128,6 @@ struct rowOfValues: View {
             viewModel.choseOperation(is: "X")
         } else if userInput == "➗" {
             viewModel.choseOperation(is: "➗")
-        } else if userInput == "√" {
-            viewModel.choseOperation(is: "√")
         }
     }
 }
