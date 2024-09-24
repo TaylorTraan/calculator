@@ -40,18 +40,24 @@ struct CalculatorView: View {
                         .font(.system(size: 80, weight: .light))
                         .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, alignment: .trailing)
                         .padding()
+                        .lineLimit(1)  // Ensure the text stays on one line
+                        .minimumScaleFactor(0.5)  // Allows the font to shrink to 50% of its original size
                 } else if viewModel.userView == 0 {
                     Text("\(viewModel.current)")
                         .foregroundColor(.white)
                         .font(.system(size: 80, weight: .light))
                         .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, alignment: .trailing)
                         .padding()
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.5)
                 } else if viewModel.userView == 2 {
                     Text("\(viewModel.total)")
                         .foregroundColor(.white)
                         .font(.system(size: 80, weight: .light))
                         .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, alignment: .trailing)
                         .padding()
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.5)
                 }
                 
                 rowOfValues(values: ["AC", "+/-", "%", "➗"],
