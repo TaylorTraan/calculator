@@ -24,7 +24,7 @@ extension Color {
 
 struct CalculatorView: View {
     
-    @State var viewModel: CalculatorViewModel
+    @StateObject var viewModel: CalculatorViewModel
     
     var body: some View {
         ZStack {
@@ -34,26 +34,45 @@ struct CalculatorView: View {
             VStack {
                 Spacer()
                 
-                Text("\(viewModel.current)")
-                    .foregroundColor(.white)
-                    .font(.system(size: 80, weight: .light))
-                    .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, alignment: .trailing)
-                    .padding()
+                if viewModel.userView == 1 {
+                    Text("\(viewModel.current2)")
+                        .foregroundColor(.white)
+                        .font(.system(size: 80, weight: .light))
+                        .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, alignment: .trailing)
+                        .padding()
+                } else if viewModel.userView == 0 {
+                    Text("\(viewModel.current)")
+                        .foregroundColor(.white)
+                        .font(.system(size: 80, weight: .light))
+                        .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, alignment: .trailing)
+                        .padding()
+                } else if viewModel.userView == 2 {
+                    Text("\(viewModel.total)")
+                        .foregroundColor(.white)
+                        .font(.system(size: 80, weight: .light))
+                        .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, alignment: .trailing)
+                        .padding()
+                }
                 
                 rowOfValues(values: ["AC", "+/-", "%", "➗"],
-                            colors: [Color.steelGray, Color.steelGray, Color.steelGray, Color.calcOrange])
+                            colors: [Color.steelGray, Color.steelGray, Color.steelGray, Color.calcOrange],
+                            viewModel: viewModel)
                 
                 rowOfValues(values: ["1", "2", "3", "+"],
-                            colors: [Color.darkGray, Color.darkGray, Color.darkGray, Color.calcOrange])
+                            colors: [Color.darkGray, Color.darkGray, Color.darkGray, Color.calcOrange],
+                            viewModel: viewModel)
                 
                 rowOfValues(values: ["4", "5", "6", "-"],
-            colors: [Color.darkGray, Color.darkGray, Color.darkGray, Color.calcOrange])
+            colors: [Color.darkGray, Color.darkGray, Color.darkGray, Color.calcOrange],
+                            viewModel: viewModel)
                 
                 rowOfValues(values: ["7", "8", "9", "X"],
-            colors: [Color.darkGray, Color.darkGray, Color.darkGray, Color.calcOrange])
+            colors: [Color.darkGray, Color.darkGray, Color.darkGray, Color.calcOrange],
+                            viewModel: viewModel)
                 
                 rowOfValues(values: ["0", ".", "√", "="],
-                            colors: [Color.darkGray, Color.darkGray, Color.calcOrange, Color.calcOrange])
+                            colors: [Color.darkGray, Color.darkGray, Color.calcOrange, Color.calcOrange],
+                            viewModel: viewModel)
                 
             }
             .padding()
